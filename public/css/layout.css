@@ -58,11 +58,19 @@ body.loading .modal {
 .perfiles li button {
     background: transparent;
     border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid transparent;
     cursor: pointer;
     height: 100%;
     outline: none;
     padding: 20px;
+
+    transition: border .15s ease;
+    -moz-transition: border .15s ease;
+    -webkit-transition: border .15s ease;
+}
+
+.perfiles li button:hover {
+    border: 1px solid #4F1E4D !important;
 }
 
 .perfiles li button img {
