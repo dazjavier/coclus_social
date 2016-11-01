@@ -32,11 +32,8 @@
         <div>
           <h1>Únete a la mayor comunidad  online de la discapacidad auditiva</h1>
           <h4>¡Regístrate para recibir más información y prepárate para tu integración a la comunidad!</h4>
-          <form action="{{ url('/set_profile') }}" id="form__registro" class="form__registro">
-            <input type="email" class="email__registro" id="email__registro" name="email" placeholder="Email">
-            <input type="submit" name="btnRegistro" class="btnRegistro" value="Registrarse">
-            <span class="form__info"></span>
-          </form>
+
+            <a href="{{ url('/register') }}" name="btnRegistro" class="btnRegistro">Registrarse</a>
         </div>
       </div>
     </div>

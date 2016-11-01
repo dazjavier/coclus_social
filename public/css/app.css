@@ -135,54 +135,32 @@ header {
   color: white;
   font-style: italic;
   font-weight: lighter;
-  opacity: .6;
+  opacity: .75;
+  margin-bottom: 50px;
 }
-
-.form__registro {
-  padding-top: 15px;
-}
-.form__registro input[type="email"],
-.form__registro input[type="submit"] {
-  border-radius: 3px;
-  font-size: 13px;
-  margin: 15px auto;
-  max-width: 100%;
-  min-height: 65px;
-  outline: none;
-  text-transform: uppercase;
-  width: 300px;
-}
-
 .email__registro {
   border: 3px solid #4F1E4D;
   padding: 10px;
 }
-.form__registro > .btnRegistro {
-  -moz-transition: background .2s ease;
-  -o-transition: background .2s ease;
-  -webkit-transition: background .2s ease;
-  background: #4F1E4D;
-  border: none;
-  color: #fff;
-  transition: background .2s ease;
+.btnRegistro {
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+    margin: 15px auto;
+    padding: 25px 50px;
+    text-transform: uppercase;
+
+    transition: background .2s ease;
+    -moz-transition: background .2s ease;
+    -o-transition: background .2s ease;
+    -webkit-transition: background .2s ease;
+    background: #4F1E4D;
 }
 
-.form__registro > .form__info {
-  color: white;
-  display: block;
-  font-size: 13px;
-  font-weight: 100;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.form__registro > .form__info_error {
-  color: red;
-}
-
-.info > div > form >.btnRegistro:hover {
-  background: #533C60;
-  text-decoration: none;
+.btnRegistro:hover {
+    color: #fff;
+    background: #533C60;
+    text-decoration: none;
 }
 
 
