@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon-01.png') }}" />
-    
+    <link rel="stylesheet" href="https://select2.github.io/dist/css/select2.min.css" media="screen" title="no title">
+
     <title>Coclus - Registrarme</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/layout.css') }}">
@@ -80,9 +81,8 @@
                     </span>
                 @endif
 
-                <select class="vertical-form-input-register" name="comuna">
-                    <option value="">Comuna 1</option>
-                    <option value="Comuna 2">Comuna 2</option>
+                <select class="vertical-form-input-register select-comuna" name="comuna">
+                    <option value="">Selecciona tu comuna</option>
                 </select>
                 @if ($errors->has('comuna'))
                     <span class="error-block">
@@ -115,6 +115,7 @@
         <img src="{{ asset('img/logo_coclus_text.png') }}" alt="" />
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://select2.github.io/dist/js/select2.full.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

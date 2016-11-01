@@ -1,21 +1,8 @@
 $(document).ready(function () {
-  var obj = {};
-
   $('.scroll a[href^="#"]').click(function (e) {
     e.preventDefault();
     $(window).stop(true).scrollTo(this.hash, { duration: 500, interrupt: true });
   });
-
-  $('.persona label').click(function(e) {
-      $(this).parent().parent().parent().parent().css('display', 'none');
-      $data_href = $(this).attr('data-href');
-      $('#next').attr('href', "/set_profile/" + $data_href);
-
-      setTimeout(function(){
-          $('.register').css('display', 'block');
-      }, 1000);
-  });
-
 
   $('.perfiles li button').on('click', function(e){
       e.preventDefault();
@@ -35,9 +22,15 @@ $(document).ready(function () {
       setTimeout(function(){
           $('.selec-perfil').css('display', 'none');
           $body.removeClass("loading");
-      }, 2000);
+      }, 1500);
       $('.row-register').css('display', 'block');
+  });
 
+  $.get('https://gist.githubusercontent.com/gonzalo-bulnes/337ea1e916e3890fdefa/raw/6706ec2d59d4647dda7fbbbbafa4ad9ead433caa/comunas.json', function(json){
+      var asd = JSON.parse(json);
+      $.each(asd, function(a, b){
+          $('.select-comuna').append('<option value="' + b.name + '">' + b.name + '</option>')
+      });
   });
 
 });
