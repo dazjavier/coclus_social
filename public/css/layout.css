@@ -40,6 +40,38 @@ body.loading .modal {
     display: block;
 }
 
+ul.communication_types {
+    list-style: none;
+}
+
+.communication_types li {
+    margin: 0 50px;
+    display: inline-block;
+}
+
+.communication_types li img {
+    cursor: pointer;
+    width: 100px;
+    max-width: 100%;
+}
+
+.communication_types li p {
+    color: #464646;
+    font-weight: 600;
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.selec-com,
+.selec-intereses {
+    margin: 50px 0;
+}
+
+.intereses-textbox {
+    width: 70%;
+}
+
 .perfiles {
     margin: 50px 0;
     list-style: none;

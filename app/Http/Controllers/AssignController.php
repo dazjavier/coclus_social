@@ -100,8 +100,8 @@ class AssignController extends Controller
 
     public function setUserInterests(Request $request, $userId) {
         $intereses = $request->input("intereses");
-        if ($intereses[0] == "") { return;}
-        $intereses = explode(', ', $intereses[0]);
+        if (count($intereses) < 0) { return; }
+
         for ($x = 0; $x < count($intereses); $x++) {
             DB::table('interest')->insert(['user_id' => $userId, 'name' => $intereses[$x]]);
         }

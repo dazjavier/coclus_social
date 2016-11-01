@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('/img/favicon-01.png') }}" />
 
     <title>Coclus</title>
 
@@ -87,6 +88,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    @include('sweet::alert');
+    @include('sweet::alert')
 </body>
 </html>

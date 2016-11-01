@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/newregister', function () {
-    return view('auth.newregister');
+Route::get('/new', function(){
+    return view('new');
 });
 
 Route::post('/register', 'Auth\AuthController@postRegisterForm');
