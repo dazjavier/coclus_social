@@ -17,10 +17,6 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/new', function(){
-    return view('new');
-});
-
 Route::post('/register', 'Auth\AuthController@postRegisterForm');
 
 Route::get('/users/{username?}', 'ProfileController@showUser');
