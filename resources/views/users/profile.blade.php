@@ -43,11 +43,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         @if ($u->profile_type == "familiar")
-                            <h3 class="color_primary_text">{{ $u->getFullName() }} <small>Familiar de Discapacitado Auditivo</small></h3>
+                            <h3 class="color_primary_text">{{ $u->getFullName() }} <small>Familiar de Persona con Discapacidad Auditiva</small></h3>
                         @elseif ($u->profile_type == "professional")
                             <h3 class="color_primary_text">{{ $u->getFullName() }} <small>Profesional del Área</small></h3>
                         @else
-                            <h3 class="color_primary_text">{{ $u->getFullName() }} <small>Discapacitado auditivo</small></h3>
+                            <h3 class="color_primary_text">{{ $u->getFullName() }} <small>Persona con Discapacidad Auditiva</small></h3>
                         @endif
 
                         @if (Auth::check())

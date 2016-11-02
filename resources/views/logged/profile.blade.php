@@ -48,11 +48,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						@if (Auth::user()->profile_type == "familiar")
-							<h3 class="pull-left">{{ Auth::user()->getFullName() }} <small>Familiar de Discapacitado Auditivo</small></h3>
+							<h3 class="pull-left">{{ Auth::user()->getFullName() }} <small>Familiar de Persona con Discapacidad Auditiva</small></h3>
 						@elseif (Auth::user()->profile_type == "professional")
 							<h3 class="pull-left">{{ Auth::user()->getFullName() }} <small>Profesional del Área</small></h3>
 						@else
-							<h3 class="pull-left">{{ Auth::user()->getFullName() }} <small>Discapacitado auditivo</small></h3>
+							<h3 class="pull-left">{{ Auth::user()->getFullName() }} <small>Persona con Discapacidad Auditiva</small></h3>
 						@endif
 							<a href="{{ route('settings') }}" class="btn btn-default pull-right">Editar</a>
                     </div>

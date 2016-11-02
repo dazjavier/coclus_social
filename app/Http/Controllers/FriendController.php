@@ -15,8 +15,6 @@ class FriendController extends Controller
         $friends = Auth::user()->friends();
         $requests = Auth::user()->friendRequests();
 
-
-
         return view('logged.friends.index')->with('requests', $requests)->with('friends', $friends);
     }
 
@@ -47,7 +45,7 @@ class FriendController extends Controller
         return redirect()->back();
 
     }
-    
+
     public function getAccept($username) {
         $user = User::where('username', $username)->first();
 

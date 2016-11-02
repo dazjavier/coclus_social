@@ -59,6 +59,14 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="col-md-6 form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                    <input type="text" name="lastname" placeholder="Apellidos" class="form-control" value="{{ old('lastname') }}" />
+                                    @if ($errors->has('lastname'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('lastname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="col-md-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <input type="email" name="email" placeholder="Correo elctrónico" class="form-control" value="{{ old('email') }}" />
                                     @if ($errors->has('email'))

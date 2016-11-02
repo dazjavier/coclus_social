@@ -60,12 +60,24 @@
                                 <button type="submit" class="btn btn-default">Buscar</button>
                             </form>
                         </li>
+                        <li>
+                            @if (Auth::user()->friendRequests()->count())
+                                <a href="{{ route('friends.index') }}">
+                                    <i class="fa fa-btn fa-bell" aria-hidden="true"></i>
+                                    {{ Auth::user()->friendRequests()->count() }}
+                                </a>
+                            @else
+                                <a href="{{ route('friends.index') }}">
+                                    <i class="fa fa-btn fa-bell" aria-hidden="true"></i>
+                                </a>
+                            @endif
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->getFullName() }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#!" class="small">Logueado como <b>{{ Auth::user()->username }}</b></a></li>
+                                <li><a href="#" class="small">Logueado como <b>{{ Auth::user()->username }}</b></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/my_profile') }}">Perfil</a></li>
                                 <li><a href="{{ route('friends.index') }}">Amigos</a></li>
