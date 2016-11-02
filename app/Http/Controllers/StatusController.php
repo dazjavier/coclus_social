@@ -49,15 +49,15 @@ class StatusController extends Controller
 
         $status->replies()->save($reply);
 
-        return redirect()->back();
+        return back();
     }
 
     public function getLike($statusId){
         $status = Status::find($statusId);
 
-        if (! $status) { abort(404); }
-        if (! Auth::user()->isFriendWith($status->user)) { abort(404); }
-        if (Auth::user()->hasLikedStatus($status)) {  return redirect()->back(); }
+        if (! $status) { return back(); }
+        if (! Auth::user()->isFriendWith($status->user)) { return back(); }
+        if (Auth::user()->hasLikedStatus($status)) {  return back(); }
 
         $like = $status->likes()->create([]);
 
@@ -68,6 +68,6 @@ class StatusController extends Controller
 
     public function getUnlike($statusId) {
         $status = Like::where('likeable_id', $statusId)->delete();
-        return redirect()->back();
+        return back();
     }
 }
