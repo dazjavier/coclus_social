@@ -11,6 +11,15 @@ class Status extends Model
         'body',
     ];
 
+    protected $visible = [
+        'id',
+        'user_id',
+        'parent_id',
+        'created_at',
+        'updated_at',
+        'body',
+    ];
+
     public function user(){
         return $this->belongsTo('Coclus\User', 'user_id');
     }

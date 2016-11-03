@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Deaf extends Model
 {
     protected $table = 'deaf';
+    protected $visible = [
+        'id',
+        'user_id',
+        'communication_type_id',
+    ];
 
     public function user(){
         return $this->belongsTo('Coclus\User', 'user_id');
