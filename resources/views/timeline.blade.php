@@ -52,7 +52,7 @@
                                                     <li class="likes">{{ $status->created_at->diffForHumans() }}</li>
                                                     <li class="likes">{{ $status->likes()->count() }} me gusta</li>
                                                     @if ($status->user->id !== Auth::user()->id)
-                                                        @if (!Auth::user()->hasLikedStatus($status))
+                                                        @if (! Auth::user()->hasLikedStatus($status))
                                                             <li><a href="{{ route('status.like', ['statusId' => $status->id]) }}">Me gusta</a></li>
                                                         @else
                                                             <li><a href="{{ route('status.unlike', ['statusId' => $status->id]) }}">Ya no me gusta</a></li>
@@ -74,7 +74,7 @@
                                                             <ul class="options_of_post">
                                                                 <li class="likes">{{ $reply->created_at->diffForHumans() }}</li>
                                                                 <li class="likes">{{ $reply->likes()->count() }} me gusta</li>
-                                                                @if ($reply->user->id !== Auth::user()->id)
+                                                                @if ($reply->user->id !== Auth::user()->id && Auth::user()->isFriendWith($reply->user))
                                                                     @if (!Auth::user()->hasLikedStatus($reply))
                                                                         <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Me gusta</a></li>
                                                                     @else

@@ -132,19 +132,18 @@
                                                                 <a href="{{ url($reply->user->getUsernameUrl()) }}" class="color_secondary_text">
                                                                     {{ $reply->user->getFullName() }}
                                                                 </a>
-
-                                                                <p class="small pull-right">
-                                                                    {{ $reply->user->created_at->diffForHumans() }}
-                                                                </p>
                                                             </h5>
                                                             <p>{{ $reply->body }}</p>
                                                             <ul class="options_of_post">
-                                                                @if ($reply->user->id !== Auth::user()->id)
-                                                                    <li class="likes">{{ $reply->likes()->count() }} me gusta</li>
-                                                                    @if (!Auth::user()->hasLikedStatus($reply))
-                                                                        <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Me gusta</a></li>
-                                                                    @else
-                                                                        <li><a href="{{ route('status.unlike', ['statusId' => $reply->id]) }}">Ya no me gusta</a></li>
+                                                                <li class="likes">{{ $reply->user->created_at->diffForHumans() }}</li>
+                                                                <li class="likes">{{ $reply->likes()->count() }} me gusta</li>
+                                                                @if (Auth::check())
+                                                                    @if ($reply->user->id !== Auth::user()->id && Auth::user()->isFriendWith($reply->user))
+                                                                        @if (! Auth::user()->hasLikedStatus($reply))
+                                                                            <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Me gusta</a></li>
+                                                                        @else
+                                                                            <li><a href="{{ route('status.unlike', ['statusId' => $reply->id]) }}">Ya no me gusta</a></li>
+                                                                        @endif
                                                                     @endif
                                                                 @endif
                                                             </ul>
@@ -183,9 +182,9 @@
                             <div class="row">
                                 @foreach ($com_types as $type )
                                     @foreach ($type as $t)
-                                    <div class="col-md-3">
-                                        {{ $t->name }}
-                                    </div>
+                                        <div class="col-md-3">
+                                            {{ $t->name }}
+                                        </div>
                                     @endforeach
                                 @endforeach
                             </div>
