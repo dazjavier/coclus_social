@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('/img/favicon-01.png') }}" />
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coclus</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/layout.css') }}" media="screen" title="no title">
-    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-coclus navbar-fixed-top">
+<body>
+    <nav class="navbar navbar-coclus">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
@@ -32,43 +26,44 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/timeline') }}">
-                    <img src="{{ asset('img/logo_coclus_text.png') }}" alt="Coclus" class="img-brand" />
+                    <img src="{{ asset('img/logo_coclus_app.png') }}" alt="Coclus" class="img-brand" />
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse navbar-inset" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/timeline') }}">Inicio</a></li>
-                    @if (! Auth::guest())
+                    @if (Auth::check())
                         <li><a href="{{ route('friends.index') }}">Amigos</a></li>
                     @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
-                        <li><a href="{{ url('/register') }}">Regístrate</a></li>
+                        <li><a href="{{ url('/register') }}">Registrate</a></li>
                     @else
                         <li>
                             <form class="navbar-form navbar-left" action="{{ route('search.results') }}" role="search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Busca personas" name="q">
+                                    <input type="text" class="form-control input-text" placeholder="Busca personas" name="q">
                                 </div>
-                                <button type="submit" class="btn btn-default">Buscar</button>
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fa fa-fw fa-search"></i>
+                                </button>
                             </form>
                         </li>
                         <li>
                             @if (Auth::user()->friendRequests()->count())
                                 <a href="{{ route('friends.index') }}">
-                                    <i class="fa fa-btn fa-bell" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
                                     {{ Auth::user()->friendRequests()->count() }}
                                 </a>
                             @else
                                 <a href="{{ route('friends.index') }}">
-                                    <i class="fa fa-btn fa-bell" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
                                 </a>
                             @endif
                         </li>
@@ -86,7 +81,6 @@
                                 <li><a href="{{ url('/logout') }}">Cerrar sesión</a></li>
                             </ul>
                         </li>
-
                     @endif
                 </ul>
             </div>
@@ -94,6 +88,32 @@
     </nav>
 
     @yield('content')
+
+    <div class="footer">
+        <div class="container footer__container">
+            <div class="logo__foter">
+                <img src="{{ asset('img/logo-coclus-footer.png') }}" alt="Coclus">
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-xs-12">
+                    <nav class="menu__footer scroll">
+                        <a href="{{ url('/timeline') }}">Inicio</a>
+                        @if (Auth::check())
+                            <a href="{{ route('friends.index') }}">Amigos</a>
+                            <a href="{{ url('/my_profile') }}">Mi perfil</a>
+                            <a href="{{ url('/settings') }}">Configuración</a>
+                        @endif
+                    </nav>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <p>Síguenos en las redes sociales &nbsp;&nbsp;&nbsp; <a href="https://www.facebook.com/coclus/"><img src="img/fb.png" alt=""></a>&nbsp;&nbsp;<a href="#"><img src="img/tw.png" alt=""></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subfooter">
+        <p>Coclus &copy; &ndash; Todos los derechos reservados.</p>
+    </div>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

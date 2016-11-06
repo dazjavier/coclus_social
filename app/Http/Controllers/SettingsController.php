@@ -38,21 +38,21 @@ class SettingsController extends Controller
 
     public function postPerfil(Request $request) {
         $this->validate($request, [
-            'name' => 'required|alpha',
-            'lastname' => 'required|alpha',
-            'email' => 'required|email',
+            'name' => 'required',
+            'lastname' => 'required',
+            'comuna' => 'required',
             'address' => 'required'
         ]);
 
         $user = Auth::user();
         $userName = $user->name;
         $userLastname = $user->lastname;
-        $userEmail = $user->email;
+        $userComuna = $user->comuna;
         $userAddress = $user->address;
 
         if ($userName == $request->input('name') ||
-            $userEmail == $request->input('email') ||
-            $userEmail == $request->input('lastname') ||
+            $userLastname == $request->input('lastname') ||
+            $userComuna == $request->input('comuna') ||
             $userAddress == $request->input('address')) {
             alert()->error('Los campos no deben ser iguales a los anteriores.', 'Error')->autoclose(3000);
             return redirect()->back();
@@ -60,7 +60,7 @@ class SettingsController extends Controller
 
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
-        $user->email = $request->input('email');
+        $user->comuna = $request->input('comuna');
         $user->address = $request->input('address');
         $user->save();
 

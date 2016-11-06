@@ -17,9 +17,14 @@ Route::get('/', function () {
 
 Route::auth();
 
+Route::get('/yay', function(){
+    return view('profiles.information');
+});
+
 Route::post('/register', 'Auth\AuthController@postRegisterForm');
 
-Route::get('/users/{username?}', 'ProfileController@showUser');
+Route::get('/users/{username}', 'ProfileController@showUser');
+Route::get('/users/{username}/statuses', 'ProfileController@showUserStatuses');
 
 Route::group(['middleware'=>'auth'], function (){
     /**
@@ -29,6 +34,7 @@ Route::group(['middleware'=>'auth'], function (){
 
         # General
         Route::get('/my_profile', 'ProfileController@index');
+        Route::get('/my_statuses', 'ProfileController@showLoggedUserStatuses');
         Route::get('/timeline', 'HomeController@index');
 
         # Settings routes
@@ -64,6 +70,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/set_profile/deaf', 'AssignController@setDeafView');
     Route::get('/set_profile/familiar', 'AssignController@setFamiliarView');
     Route::get('/set_profile/professional', 'AssignController@setProfessionalView');
+    Route::post('/add/interests', 'AssignController@setUserInterestsAjax');
 
     ## POST
     Route::post('/set_profile/deaf', 'AssignController@postDeaf');

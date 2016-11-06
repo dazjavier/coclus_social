@@ -26,11 +26,51 @@ $(document).ready(function () {
       $('.row-register').css('display', 'block');
   });
 
-  $.get('https://gist.githubusercontent.com/gonzalo-bulnes/337ea1e916e3890fdefa/raw/6706ec2d59d4647dda7fbbbbafa4ad9ead433caa/comunas.json', function(json){
-      var asd = JSON.parse(json);
-      $.each(asd, function(a, b){
-          $('.select-comuna').append('<option value="' + b.name + '">' + b.name + '</option>')
+  $.get('https://gist.githubusercontent.com/gonzalo-bulnes/337ea1e916e3890fdefa/raw/6706ec2d59d4647dda7fbbbbafa4ad9ead433caa/comunas.json', function(response){
+      var comunas = JSON.parse(response);
+      comunas.sort(function(a, b){
+          return a.name.localeCompare(b.name);
+      });
+      $.each(comunas, function(a, b){
+          $('.select-comuna').append('<option value="' + b.name + '">' + b.name + '</option>');
       });
   });
+
+  $('.comment-link').click(function(e){
+      e.preventDefault();
+      $(this).toggleClass('active');
+      var thebox = $(this).parent().parent().find('.comment-textbox').attr('id');
+      $('#' + thebox).toggleClass('reply-status');
+      //console.log($('.comment-textbox').attr('id'));
+      //$('.comment-textbox', '.info-comment').first().toggleClass('reply-status');
+  });
+
+    $('.list-interest li span').click(function(){
+        $(this).toggleClass('list-interest-selected');
+    });
+
+    $('.try').click(function(e){
+        e.preventDefault();
+        var interests = [];
+        var values = $('.list-interest li span.list-interest-selected');
+        if(values[0] === undefined) { return; }
+        $.each(values, function(i, element){
+            var el = $(element).attr('data-value');
+            interests.push(el);
+        });
+
+        $.ajax({
+            url: '/add/interests',
+            method: 'post',
+            data: { interests: interests, user_id: $('.list-interest').attr('id'), _token: $('input[name="_token"]').val() }
+        })
+        .done(function(msg){
+            console.log(msg);
+            $('.set_profile_form').submit();
+        })
+        .error(function(error){
+            console.log(error);
+        });
+    });
 
 });

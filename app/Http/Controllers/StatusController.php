@@ -3,6 +3,7 @@
 namespace Coclus\Http\Controllers;
 
 use Coclus\Like;
+use Coclus\User;
 use Illuminate\Http\Request;
 use Auth;
 use Coclus\Status;
@@ -19,7 +20,7 @@ class StatusController extends Controller
             'body' => $request->input('status'),
         ]);
 
-        alert()->success('El estado ha sido publicado con éxito', 'Éxito')->autoclose(3000);
+        alert()->success('El estado ha sido publicado con éxito', 'Éxito')->autoclose(1000);
         return redirect('/timeline');
     }
 

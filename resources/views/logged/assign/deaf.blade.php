@@ -17,10 +17,10 @@
         <h2>Registrarme</h2>
         @if (Auth::user()->profile_type == strtolower("deaf"))
         <h4>Soy una Persona con Discapacidad Auditiva</h4>
-        <form class="vertical-form" role="form" method="POST" action="{{ url('/set_profile/deaf') }}">
+        <form class="vertical-form set_profile_form" role="form" method="POST" action="{{ url('/set_profile/deaf') }}">
             {{ csrf_field() }}
             <div >
-                <h5>Selecciona tus formas de comunicación</h5>
+                <h3>Selecciona tus formas de comunicación</h3>
                 <ul class="communication_types">
                     <li>
                         <label for="implante_coclear">
@@ -52,10 +52,23 @@
                 </ul>
             </div>
             <div class="selec-intereses">
-                <h5>Ingresa tus intereses</h5>
-                <div data-tags-input-name="intereses" id="tagBox" class="vertical-form-input-register intereses-textbox"></div>
+                <h3>Ingresa tus intereses</h3>
+                <ul class="list-interest" id="{{ Auth::user()->id  }}">
+                    <li style="background-image: url('{{ asset('img/technology.png') }}');"><span data-value="Tecnología">Tecnología</span></li>
+                    <li style="background-image: url('{{ asset('img/politics.png') }}');"><span data-value="Política">Política</span></li>
+                    <li style="background-image: url('{{ asset('img/business.png') }}');"><span data-value="Negocios">Negocios</span></li>
+                    <li style="background-image: url('{{ asset('img/design.png') }}');"><span data-value="Diseño">Diseño</span></li>
+                    <li style="background-image: url('{{ asset('img/sports.png') }}');"><span data-value="Deporte">Deporte</span></li>
+                    <li style="background-image: url('{{ asset('img/humor.png') }}');"><span data-value="Humor">Humor</span></li>
+                    <li style="background-image: url('{{ asset('img/health.png') }}');"><span data-value="Salud">Salud</span></li>
+                    <li style="background-image: url('{{ asset('img/art.png') }}');"><span data-value="Arte">Arte</span></li>
+                    <li style="background-image: url('{{ asset('img/science.png') }}');"><span data-value="Ciencia">Ciencia</span></li>
+                    <li style="background-image: url('{{ asset('img/books.png') }}');"><span data-value="Libros">Libros</span></li>
+                    <li style="background-image: url('{{ asset('img/food.png') }}');"><span data-value="Comida">Comida</span></li>
+                    <li style="background-image: url('{{ asset('img/computers.png') }}');"><span data-value="Computación">Computación</span></li>
+                </ul>
             </div>
-            <button class="btn-login vertical-form-input">Finalizar registro</button>
+            <button class="btn-login vertical-form-input try">Finalizar registro</button>
         </form>
         @else
             <h2>Al parecer no habias seleccionado este tipo de perfil.</h2>
@@ -63,14 +76,9 @@
         @endif
     </div>
     <div class="modal">
-        <img src="{{ asset('img/logo_coclus_text.png') }}" alt="" />
+        <img src="{{ asset('img/logo_coclus_text.png') }}" alt="Coclus" />
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="http://sniperwolf.github.io/taggingJS/example/tag-basic-style.css">
-    <script src="{{ asset('js/plugins/tagging.min.js') }}"></script>
-    <script type="text/javascript">
-        $("#tagBox").tagging();
-    </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     @include('sweet::alert')

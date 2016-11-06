@@ -47,12 +47,26 @@ class User extends Authenticatable
         return "/uploads/avatars/" . $this->avatar;
     }
 
+    public function getUserWhoIs() {
+        if ($this->profile_type === "deaf") {
+            return 'Persona con Discapacidad Auditiva';
+        } else if ($this->profile_type === "familiar") {
+            return 'Familiar de Persona con Discapacidad Auditiva';
+        } else {
+            return 'Profesional del Área';
+        }
+    }
+
     public function getUsernameUrl() {
         return "users/" . $this->getUsername();
     }
 
     public function statuses() {
         return $this->hasMany('Coclus\Status', 'user_id');
+    }
+
+    public function interests() {
+        return $this->hasMany('Coclus\Interests');
     }
 
     public function likes() {

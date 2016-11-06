@@ -22,7 +22,7 @@ class Deaf extends Model
     }
 
     public function getCommunicationTypes() {
-        return $this->communication_type->where('id', $this->communication_type_id);
+        return $this->communication_type->where('id', $this->communication_type_id)->pluck('name');
     }
 
 

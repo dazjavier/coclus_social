@@ -1,153 +1,127 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-    <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<img src="{{ asset(Auth::user()->getAvatarUrl()) }}" class="img-responsive" alt="">
-				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						{{ Auth()->user()->getFullName() }}
-					</div>
-					<div class="profile-usertitle-job">
-						{{ Auth()->user()->getUsername() }}
-					</div>
-				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li>
-							<a href="{{ url('/my_profile') }}">
-							<i class="fa fa-btn fa-user"></i>
-							Perfil </a>
-						</li>
-						<li  class="active">
-							<a href="{{ url('/settings') }}">
-							<i class="fa fa-btn fa-cog"></i>
-							Configuración </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="fa fa-btn fa-flag"></i>
-							Ayuda </a>
-						</li>
-					</ul>
-				</div>
-				<!-- END MENU -->
-			</div>
-		</div>
-		<div class="col-md-9">
-            <div class="profile-content">
+    <div class="container body-padding">
+        <div class="row">
+            @include('logged.profiles.sidebar')
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">&nbsp;</div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>Opciones de Perfil</h3>
-                        <div class="row">
-                            <form method="post" action="{{ route('settings.post.perfil') }}">
-                                {{ csrf_field() }}
-                                <div class="col-md-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{ old('name') }}" />
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="col-md-6 form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                                    <input type="text" name="lastname" placeholder="Apellidos" class="form-control" value="{{ old('lastname') }}" />
-                                    @if ($errors->has('lastname'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('lastname') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="col-md-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input type="email" name="email" placeholder="Correo elctrónico" class="form-control" value="{{ old('email') }}" />
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="col-md-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                    <input type="text" name="address" placeholder="Dirección" class="form-control" value="{{ old('address') }}" />
-                                    @if ($errors->has('address'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('address') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="submit" name="btnSubmitProfileSettings" value="Guardar cambios" class="btn btn-primary">
-                                </div>
-                            </form>
-                        </div>
+                        <h2>Juanito Pérez Tanto <small>Persona con Discapacidad Auditiva</small></h2>
                     </div>
-                    <hr>
                     <div class="col-md-12">
-                        <h3>Cambiar contraseña</h3>
-                        <div class="row">
-                            <form method="post" action="{{ route('settings.post.password') }}">
-                                {{ csrf_field() }}
-                                <div class="col-md-12 form-group{{ $errors->has('oldPassword') ? ' has-error' : '' }}">
-                                    <input type="password" name="oldPassword" placeholder="Contraseña actual" class="form-control" />
-                                    @if ($errors->has('oldPassword'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('oldPassword') }}</strong>
+                        <h3 class="title-section">Configuración</h3>
+                        <hr>
+                        <h4>Configuración Personal</h4>
+                        <form action="{{ route('settings.post.perfil') }}" role="form" method="post">
+                            {{ csrf_field() }}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control input-config" placeholder="Nombre" name="name" value="{{ old('name') }}">
+                                        @if ($errors->has("name"))
+                                            <span class="error-block">
+                                                {{ $errors->first("name") }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control input-config" placeholder="Apellidos" name="lastname" value="{{ old('lastname') }}">
+                                        @if ($errors->has("lastname"))
+                                            <span class="error-block">
+                                                {{ $errors->first("lastname") }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <select name="comuna" class="form-control input-config select-comuna">
+                                            <option value="">Selecciona tu Comuna</option>
+                                        </select>
+                                        @if ($errors->has("comuna"))
+                                            <span class="error-block">
+                                                {{ $errors->first("comuna") }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <button type="submit" class="btn-config input-config">
+                                            <i class="fa fa-fw fa-floppy-o"></i>
+                                            Guardar cambios
+                                        </button>
+                                    </div>
+                                </div>
+                        </form>
+                        <br>
+                        <h4>Cambiar Contraseña</h4>
+                        <form method="post" action="{{ route('settings.post.password') }}" role="form">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control input-config" placeholder="Contraseña actual" name="oldPassword">
+                                    @if ($errors->has("oldPassword"))
+                                        <span class="error-block">
+                                            {{ $errors->first("oldPassword") }}
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6 form-group{{ $errors->has('newPassword') ? ' has-error' : '' }}">
-                                    <input type="password" name="newPassword" placeholder="Nueva contraseña" class="form-control" />
-                                    @if ($errors->has('newPassword'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('newPassword') }}</strong>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control input-config" placeholder="Nueva contraseña" name="newPassword">
+                                    @if ($errors->has("newPassword"))
+                                        <span class="error-block">
+                                            {{ $errors->first("newPassword") }}
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6 form-group{{ $errors->has('newPassword_confirmation') ? ' has-error' : '' }}">
-                                    <input type="password" name="newPassword_confirmation" placeholder="Confirmar nueva contraseña" class="form-control" />
-                                    @if ($errors->has('newPassword_confirmation'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('newPassword_confirmation') }}</strong>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control input-config" placeholder="Repite nueva contraseña" name="newPassword_confirmation">
+                                    @if ($errors->has("newPassword_confirmation"))
+                                        <span class="error-block">
+                                            {{ $errors->first("newPassword_confirmation") }}
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="submit" name="btnSubmitChangePassword" value="Guardar cambios" class="btn btn-primary">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn-config input-config">
+                                        <i class="fa fa-fw fa-unlock-alt"></i>
+                                        Cambiar contraseña
+                                    </button>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="col-md-12">
-                        <h3>Cambiar imágen de Perfil</h3>
-                        <div class="row">
-                            <form method="post" action="{{ route('settings.post.avatar') }}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <div class="col-md-6 form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            </div>
+                        </form>
+                        <br>
+                        <h4>Cambiar avatar</h4>
+                        <form method="post" action="{{ route('settings.post.avatar') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <input type="file" name="avatar">
                                     @if ($errors->has('avatar'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        <span class="error-block">
+                                            {{ $errors->first('avatar') }}
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="submit" name="btnSubmitChangeAvatar" value="Guardar cambios" class="btn btn-primary">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn-config input-config">
+                                        <i class="fa fa-fw fa-cloud-upload"></i>
+                                        Subir avatar
+                                    </button>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-		</div>
-	</div>
-</div>
+        </div>
+    </div>
 @endsection

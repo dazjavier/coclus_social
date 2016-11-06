@@ -1,3 +1,6 @@
+/* General
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 /* **************
  *
  * General Styles
@@ -8,7 +11,8 @@ body {
   font-family: 'Open Sans', Helvetica, sans-serif;
 }
 
-.title {
+.historia h2.title {
+    color: white !important;
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -20,6 +24,25 @@ body {
   font-weight: 100;
 }
 
+.vote {
+    display: inline;
+    list-style: none;
+}
+
+.vote li {
+    display: inline-block;
+}
+
+.vote li a {
+    color: #4F1E4D;
+    -webkit-transition: color .4s ease;
+    -moz-transition: color .4s ease;
+    transition: color .4s ease;
+}
+
+.vote li a:hover {
+    color: #995997;
+}
 /***************
  *
  * Modal
@@ -117,6 +140,13 @@ header {
   position: relative;
   width: 100%;
 }
+
+.info h1,
+.info h4 {
+    color: white !important;
+}
+
+
 .info div {
   display: table-cell;
   position: relative;
@@ -342,12 +372,381 @@ header {
   .logos li { padding: 35px; }
 }
 
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+}
 
-/***************
- *
- * Footer
- *
-****************/
+h1 { font-size: 36px; color: #4F1E4D !important; font-weight: 700; }
+h2 { font-size: 30px; color: #4F1E4D !important; font-weight: 700; }
+h3 { font-size: 24px; color: #4F1E4D !important; font-weight: 700; }
+h4 { font-size: 18px; color: #995997 !important; font-weight: 600; }
+h5 { font-size: 14px; color: #464646 !important; font-weight: 600; }
+h6 { font-size: 12px; color: #989898 !important; font-weight: 600; }
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.body-padding {
+    padding: 50px 0;
+}
+
+.error-block {
+    color: red !important;
+    font-size: 10px;
+}
+
+.input-text {
+    border-radius: 3px;
+    box-shadow: none !important;
+    color: #464646;
+    font-size: 13px;
+}
+
+.input-text,
+.input-text:hover,
+.input-text:focus {
+    border: 1px solid #C4C4C4 !important;
+    transition: border .25s ease;
+    -moz-transition: border .25s ease;
+    -webkit-transition: border .25s ease;
+}
+
+.input-text:hover,
+.input-text:focus {
+    border: 1px solid #4F1E4D !important;
+}
+
+.input-config,
+.input-config:focus,
+.input-config:active,
+.input-config:hover {
+    outline: none;
+}
+
+.input-config {
+    display: block;
+    height: 65px;
+    border: 2px solid #E4E4E4;
+    font-size: 18px;
+    color: #9E9E9E;
+    min-width: 280px;
+    margin: 15px auto;
+    border-radius: 3px;
+}
+
+select.input-config  {
+    background: #fff;
+    height: 65px;
+    width: 100%;
+}
+
+.btn-config {
+  cursor: pointer;
+  border: none !important;
+  background-color: #5CB85C;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+
+  transition: background-color .15s ease;
+  -webkit-transition: background-color .15s ease;
+  -moz-transition: background-color .15s ease;
+}
+
+.btn-config:hover {
+  background-color: #3E893E;
+}
+
+.btn-secondary {
+    background-color: #fff;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    border: 1px solid #C4C4C4 !important;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -webkit-transition: all .25s ease;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #995997 !important;
+    border: 1px solid #995997 !important;
+    color: white !important;
+}
+
+.btn-primary {
+    background-color: #4F1E4D;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+    border: 1px solid #4F1E4D !important;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -webkit-transition: all .25s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #995997 !important;
+    border: 1px solid #995997 !important;
+    color: white !important;
+}
+
+.navbar-coclus {
+    background-color: rgba(255, 255, 255, .75);
+    border-bottom: 1px solid #ccc;
+    height: 120px;
+    padding-top: 10px;
+}
+
+.navbar-inset {
+    margin-top: 25px;
+}
+
+.navbar-inset a {
+    color: #464646 !important;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -webkit-transition: all .25s ease;
+}
+
+.navbar-inset a:hover {
+    background-color: transparent !important;
+    color: #995997 !important;
+}
+
+.title-section {
+    color: #767676 !important;
+    font-size: 18px !important;
+    font-weight: normal;
+
+}
+
+
+
+/* Profile's Sidebar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.sidebar {
+    background-color: #F9F9F9;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar-user-info {
+    margin-bottom: 30px;
+}
+
+.sidebar-user-info img {
+    max-width: 100%;
+}
+
+.img-container {
+    background: white;
+    border-radius: 146px;
+    border: 1px solid #D7D7D7;
+    height: 128px;
+    margin: 20px auto;
+    overflow: hidden;
+    width: 128px;
+}
+
+ul.menu-sidebar-profile {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+ul.menu-sidebar-profile li {
+    padding: 10px 0;
+}
+
+ul.menu-sidebar-profile li a {
+    color: #767676;
+    font-size: 14px;
+    padding: 10px;
+}
+
+ul.menu-sidebar-profile li a i {
+    font-size: 18px;
+}
+
+ul.menu-sidebar-profile li a.active,
+ul.menu-sidebar-profile li a:hover,
+ul.menu-sidebar-profile li a:active {
+    color: #4F1E4D;
+    font-weight: 600;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -webkit-transition: all .25s ease;
+}
+
+/* Profile's Content
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.communication_type {
+    margin-top: 50px;
+}
+.communication_type p {
+    color: #464646;
+    font-weight: 600;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+.intereses {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.intereses li {
+    color: #494949;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 25px 0 0;
+}
+
+
+/* Comments
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.comment {
+    margin-bottom: 25px;
+}
+.comment img {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #D7D7D7;
+    border-radius: 24px;
+}
+
+.title-comment {
+    color: #464646 !important;
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+.body-comment {
+    color: #9A9A9A;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.info-comment {
+    list-style: disc;
+    margin: 0;
+    padding: 0;
+}
+
+.info-comment li {
+    color: #717171;
+    display: inline;
+    font-size: 12px;
+    margin: 0 15px 0 0;
+}
+
+.info-comment li a {
+    color: #995997;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.info-comment li a.active {
+    color: #7F7F7F;
+    text-decoration: none;
+}
+
+.reply {
+    margin-top: 40px;
+}
+
+.comment-textbox {
+    margin-top: 25px;
+}
+
+.comment-textbox textarea {
+    height: 70px;
+    resize: none;
+}
+
+.comment-textbox button {
+    margin-top: 10px;
+    padding: 13px 15px;
+}
+
+.reply-status {
+    display: none;
+}
+
+/* Fichas
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.ficha {
+    display: flex;
+    align-items: center;
+    border: 1px solid #4F1E4D;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 10px;
+    min-height: 107px;
+    margin-top: 20px;
+}
+
+.ficha > .img-container-ficha {
+    width: 80px;
+    height: 80px;
+}
+
+.ficha > .img-container-ficha > img {
+    border-radius: 50%;
+}
+
+.ficha > .datos {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.ficha > .datos > a.ficha-name {
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ficha > .datos > p.ficha-username {
+    color: #909090;
+    font-size: 13px;
+}
+
+
+/* Publicidad
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.publicidad {
+    border-radius: 5px;
+    border: 1px solid #CACACA;
+    margin: 20px 0;
+    padding: 10px 20px;
+}
+
+.publicidad p {
+    color: #9D9D9D;
+    font-size: 13px;
+}
+
+
+/* Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 .footer {
   background: rgba(65, 36, 75, 1) url('../img/bg-footer.png');
   background-size: cover;
@@ -396,11 +795,8 @@ header {
 }
 
 
-/***************
- *
- * Subfooter
- *
-****************/
+/* Subfooter
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .subfooter {
   min-height: 50px;

@@ -18,83 +18,60 @@ use DB;
 class ProfileController extends Controller
 {
     public function index() {
-        $com_types      = array();
-        $userId         = Auth::user()->id;
-        $profile_type   = Auth::user()->profile_type;
+        $userId     = Auth::user()->id;
+        $deaf       = Deaf::where('user_id', $userId)->get();
+        $familiar   = Familiar::where('user_id', $userId)->first();
 
-        $interest       = $this->getInterestsByUserId($userId);
-        $statuses       = Auth::user()->statuses()->notReply()->limit(6)->get();
+        return view('logged.profiles.information')
+        ->with('deaf', $deaf)
+        ->with('familiar', $familiar);
+    }
 
-        $deaf_communication_types = Deaf::where('user_id', $userId)->get();
+    public function showLoggedUserStatuses() {
+        $statuses = Auth::user()->statuses()->notReply()->limit(5)->get();
 
-        for ($i=0; $i < $deaf_communication_types->count(); $i++) {
-            if ($deaf_communication_types[$i] !== null){
-                array_push($com_types, $deaf_communication_types[$i]->getCommunicationTypes());
-            }
-        }
-
-        if ($profile_type == "professional") {
-            $professional   = Professional::where('user_id', $userId)->first();
-            $speciallity    = $professional->getSpeciallity();
-
-            return view('logged.profile')
-                    ->with('com_types', $com_types)
-                    ->with('professional', $professional)
-                    ->with('speciallity', $speciallity)
-                    ->with('interest', $interest)
-                    ->with('statuses', $statuses);
-        }
-
-        if ($profile_type == "familiar") {
-            $familiar = Familiar::where('user_id', $userId)->first();
-            return view('logged.profile')
-                    ->with('com_types', $com_types)
-                    ->with('familiar', $familiar)
-                    ->with('interest', $interest)
-                    ->with('statuses', $statuses);
-        }
-
-        return view('logged.profile')
-                ->with('com_types', $com_types)
-                ->with('interest', $interest)
-                ->with('statuses', $statuses);
+        return view('logged.profiles.statuses')->with('statuses', $statuses);
     }
 
     public function showUser($username) {
-        $com_types = array();
-        $u = $this->getUserByUsername($username);
-
-        if (! $u) {
-            abort(404);
-        }
-
-        if ($u == Auth::user()) {
-            return redirect('/my_profile');
-        }
-
-        $options = array();
-
-        $userId = $u->id;
-        $interests = $this->getInterestsByUserId($userId);
-        $profile_type = $this->getProfileTypeByUserId($u->profile_type, $userId);
-
-        $deaf_communication_types = Deaf::where('user_id', $userId)->get();
-
-        for ($i=0; $i < $deaf_communication_types->count(); $i++) {
-            if ($deaf_communication_types[$i] !== null){
-                array_push($com_types, $deaf_communication_types[$i]->getCommunicationTypes());
+        $user = User::where('username', $username)->first();
+        if (Auth::check()) {
+            if ($user->username == Auth::user()->username) {
+                return redirect('/my_profile');
             }
         }
 
-        array_push($options, $profile_type[0]);
-        $statuses = $u->statuses()->notReply()->limit(6)->get();
-        return view('users.profile')
-            ->with('com_types', $com_types)
-            ->with('u', $u)
-            ->with('familiar', $options)
-            ->with('interest', $interests)
-            ->with('statuses', $statuses)
-            ->with('authIsFriend', $u->isFriendWith($u));
+        $user_profile_type = $user->profile_type;
+        $familiar = "";
+
+        if ($user_profile_type == "familiar") {
+            $familiar = Familiar::where('user_id', $user->id)->first();
+            $user_type = Deaf::where('user_id', $user->id)->get();
+        } else if ($user_profile_type == "professional") {
+            $user_type = Professional::where('user_id', $user->id)->first();
+        } else {
+            $user_type = Deaf::where('user_id', $user->id)->get();
+        }
+
+        return view('users.information')
+        ->with('familiar', $familiar)
+        ->with('user', $user)
+        ->with('user_type', $user_type);
+    }
+
+    public function showUserStatuses($username) {
+        $user = User::where('username', $username)->first();
+        $statuses = $user->statuses()->notReply()->limit(5)->get();
+
+        if (Auth::check()) {
+            if ($user->username == Auth::user()->username) {
+                return redirect('/my_profile');
+            }
+        }
+
+        return view('users.statuses')
+        ->with('user', $user)
+        ->with('statuses', $statuses);
     }
 
     public function getUserByUsername($username) {

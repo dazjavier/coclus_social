@@ -95,6 +95,7 @@ class AssignController extends Controller
 
         $this->postAssignProfile('Has configurado tu perfil correctamente.');
         return redirect()->to('/my_profile');
+
     }
 
 
@@ -106,6 +107,21 @@ class AssignController extends Controller
             DB::table('interest')->insert(['user_id' => $userId, 'name' => $intereses[$x]]);
         }
         return true;
+    }
+
+    public function setUserInterestsAjax() {
+        $user_id = (int) request()->input('user_id');
+        $interests = request()->input('interests');
+
+        if ($interests === null || $user_id === null) {
+            return response()->json(false);
+        }
+
+        for ($x = 0; $x < count($interests); $x++) {
+            DB::table('interest')->insert(['user_id' => $user_id, 'name' => $interests[$x]]);
+        }
+
+        return response()->json(true);
     }
 
     public function setDeafCommunicationTypes(Request $request, $userId) {

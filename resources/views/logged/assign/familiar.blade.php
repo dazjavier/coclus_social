@@ -17,10 +17,10 @@
         <h2>Registrarme</h2>
         @if (Auth::user()->profile_type == strtolower("familiar"))
             <h4>Soy Familiar de una Persona con Discapacidad Auditiva</h4>
-            <form class="vertical-form" role="form" method="POST" action="{{ url('/set_profile/familiar') }}">
+            <form class="vertical-form set_profile_form" role="form" method="POST" action="{{ url('/set_profile/familiar') }}">
                 {{ csrf_field() }}
                 <div class="">
-                    <h5>¿Cuál es tu relación con él?</h5>
+                    <h3>¿Cuál es tu relación con él?</h3>
                     <select class="vertical-form-input-register" name="relation" value="{{ old('relation') }}">
                         <option></option>
                         <option {{ old('relation') == "Madre o Padre" ? 'selected' : '' }}>Madre o Padre</option>
@@ -35,7 +35,7 @@
                         </span>
                     @endif
 
-                    <h5>¿En que etapas estás?</h5>
+                    <h3>¿En que etapas estás?</h3>
                     <select class="vertical-form-input-register" name="step" value="{{ old('step') }}">
                         <option></option>
                         <option {{ old('step') == "Me acabo de enterar" ? 'selected' : '' }}>Me acabo de enterar</option>
@@ -50,7 +50,7 @@
                     @endif
                 </div>
                 <div class="selec-com">
-                    <h5>Selecciona sus formas de comunicación</h5>
+                    <h3>Selecciona sus formas de comunicación</h3>
                     <ul class="communication_types">
                         <li>
                             <label for="implante_coclear">
@@ -83,9 +83,22 @@
                 </div>
                 <div class="selec-intereses">
                     <h5>Ingresa tus intereses</h5>
-                    <div data-tags-input-name="intereses" id="tagBox" class="vertical-form-input-register intereses-textbox"></div>
+                    <ul class="list-interest" id="{{ Auth::user()->id  }}">
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Tecnología">Tecnología</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Política">Política</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Negocios">Negocios</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Diseño">Diseño</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Arte">Arte</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Deporte">Deporte</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Humor">Humor</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Salud">Salud</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Ciencia">Ciencia</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Libros">Libros</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Comida">Comida</span></li>
+                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Computación">Computación</span></li>
+                    </ul>
                 </div>
-                <button class="btn-login vertical-form-input">Finalizar registro</button>
+                <button class="btn-login vertical-form-input try">Finalizar registro</button>
             </form>
         @else
             <h2>Al parecer no habias seleccionado este tipo de perfil.</h2>
@@ -93,14 +106,9 @@
         @endif
     </div>
     <div class="modal">
-        <img src="{{ asset('img/logo_coclus_text.png') }}" alt="" />
+        <img src="{{ asset('img/logo_coclus_text.png') }}" alt="Coclus" />
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="http://sniperwolf.github.io/taggingJS/example/tag-basic-style.css">
-    <script src="{{ asset('js/plugins/tagging.min.js') }}"></script>
-    <script type="text/javascript">
-        $("#tagBox").tagging();
-    </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     @include('sweet::alert')

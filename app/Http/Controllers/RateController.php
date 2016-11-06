@@ -16,7 +16,7 @@ class RateController extends Controller
     }
 
     public function rate($professional_id, $vote) {
-        $professional = Professional::find($professional_id);
+        $professional = Professional::where('user_id', $professional_id)->first();
         $rating = new Rating;
         $rating->rating = $vote;
         $rating->user_id = $professional_id;

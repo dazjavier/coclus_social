@@ -24,8 +24,14 @@
           <a href="#que_es">Qué es Coclus</a>
           <a href="#como_funciona">Cómo funciona</a>
           <a href="#historia">Historia</a>
-          <a href="/login">Iniciar sesión</a>
-          <a href="/register">Registrarme</a>
+          <span style="color: white; opacity: .5;">|</span>
+          @if (Auth::check())
+              <a href="/timeline">Timeline</a>
+              <a href="/my_profile">Mi Perfil</a>
+          @else
+              <a href="/login">Iniciar sesión</a>
+              <a href="/register">Registrarme</a>
+          @endif
         </nav>
       </header>
       <div class="info">

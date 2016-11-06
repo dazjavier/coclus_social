@@ -23,19 +23,19 @@
                     <li>
                         <button class="unbotonized" data-href="deaf">
                             <img src="{{ asset('img/persona_sorda.png') }}" class="img-responsive center-block" alt="Responsive image">
-                            <p>Soy una persona con discapacidad auditiva</p>
+                            <div>Soy una persona con discapacidad auditiva</div>
                         </button>
                     </li>
                     <li>
                         <button class="unbotonized" data-href="familiar">
                             <img src="{{ asset('img/familia.png') }}" class="img-responsive center-block" alt="Responsive image">
-                            <p>Soy familiar de una persona con discapacidad auditiva</p>
+                            <div>Soy familiar de una persona con discapacidad auditiva</div>
                         </button>
                     </li>
                     <li>
                         <button class="unbotonized" data-href="professional">
                             <img src="{{ asset('img/doctor.png') }}" class="img-responsive center-block" alt="Responsive image">
-                            <p>Soy un profesional del área</p>
+                            <div>Soy un profesional del área</div>
                         </button>
                     </li>
                     <input type="hidden" name="profile_type" value="{{ old('profile_type') }}">
