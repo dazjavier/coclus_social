@@ -65,6 +65,13 @@ class User extends Authenticatable
         return $this->hasOne('Coclus\Deaf', 'user_id');
     }
 
+    public function familiar() {
+        return $this->hasOne('Coclus\Familiar', 'user_id');
+    }
+    public function professional() {
+        return $this->hasOne('Coclus\Professional', 'user_id');
+    }
+
     public function statuses() {
         return $this->hasMany('Coclus\Status', 'user_id');
     }

@@ -32,27 +32,27 @@
                         </h4>
                         <div class="row communication_type">
                             @foreach($deaf as $d)
-                                @if ($d->getCommunicationTypes()[0] == "Implante Coclear")
+                                @if ($d->communication_type()->get()[0]["name"] == "Implante Coclear")
                                     <div class="col-lg-4 text-center">
                                         <img src="{{ asset('img/implante_coclear.png') }}" alt="" />
                                         <p>
-                                            {{ $d->getCommunicationTypes()[0] }}
+                                            {{ $d->communication_type()->get()[0]["name"] }}
                                         </p>
                                     </div>
                                 @endif
-                                @if ($d->getCommunicationTypes()[0] == "Audífono")
+                                @if ($d->communication_type()->get()[0]["name"] == "Audífono")
                                     <div class="col-lg-4 text-center">
                                         <img src="{{ asset('img/audifono.png') }}" alt="" />
                                         <p>
-                                            {{ $d->getCommunicationTypes()[0] }}
+                                            {{ $d->communication_type()->get()[0]["name"] }}
                                         </p>
                                     </div>
                                 @endif
-                                @if ($d->getCommunicationTypes()[0] == "Lengua de Señas")
+                                @if ($d->communication_type()->get()[0]["name"] == "Lengua de Señas")
                                     <div class="col-lg-4 text-center">
                                         <img src="{{ asset('img/lengua_de_senias.png') }}" alt="" />
                                         <p>
-                                            {{ $d->getCommunicationTypes()[0] }}
+                                            {{ $d->communication_type()->get()[0]["name"] }}
                                         </p>
                                     </div>
                                 @endif
