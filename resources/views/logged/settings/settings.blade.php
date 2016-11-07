@@ -8,7 +8,7 @@
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>{{ $user->getFullName() }} <small>{{ $user->getUserWhoIs() }}</small></h2>
+                        <h2>{{ Auth::user()->getFullName() }} <small>{{ Auth::user()->getUserWhoIs() }}</small></h2>
                     </div>
                     <div class="col-md-12">
                         <h3 class="title-section">Configuración</h3>
