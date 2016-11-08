@@ -41,7 +41,7 @@
                 @foreach($status->replies as $reply)
                     <div class="media comment reply">
                         <div class="media-left">
-                            <a href="{{ $reply->user->getUsernameUrl() }}">
+                            <a href="{{ url($reply->user->getUsernameUrl()) }}">
                                 <img class="media-object" src="{{ $reply->user->getAvatarUrl() }}" alt="{{ $reply->user->getFullName() }}">
                             </a>
                         </div>

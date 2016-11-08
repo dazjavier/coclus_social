@@ -84,18 +84,18 @@
                 <div class="selec-intereses">
                     <h5>Ingresa tus intereses</h5>
                     <ul class="list-interest" id="{{ Auth::user()->id  }}">
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Tecnología">Tecnología</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Política">Política</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Negocios">Negocios</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Diseño">Diseño</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Arte">Arte</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Deporte">Deporte</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Humor">Humor</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Salud">Salud</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Ciencia">Ciencia</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Libros">Libros</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Comida">Comida</span></li>
-                        <li style="background-image: url('http://lorempixel.com/180/130/');"><span data-value="Computación">Computación</span></li>
+                        <li style="background-image: url('{{ asset('img/technology.png') }}');"><span data-value="Tecnología">Tecnología</span></li>
+                        <li style="background-image: url('{{ asset('img/politics.png') }}');"><span data-value="Política">Política</span></li>
+                        <li style="background-image: url('{{ asset('img/business.png') }}');"><span data-value="Negocios">Negocios</span></li>
+                        <li style="background-image: url('{{ asset('img/design.png') }}');"><span data-value="Diseño">Diseño</span></li>
+                        <li style="background-image: url('{{ asset('img/sports.png') }}');"><span data-value="Deporte">Deporte</span></li>
+                        <li style="background-image: url('{{ asset('img/humor.png') }}');"><span data-value="Humor">Humor</span></li>
+                        <li style="background-image: url('{{ asset('img/health.png') }}');"><span data-value="Salud">Salud</span></li>
+                        <li style="background-image: url('{{ asset('img/art.png') }}');"><span data-value="Arte">Arte</span></li>
+                        <li style="background-image: url('{{ asset('img/science.png') }}');"><span data-value="Ciencia">Ciencia</span></li>
+                        <li style="background-image: url('{{ asset('img/books.png') }}');"><span data-value="Libros">Libros</span></li>
+                        <li style="background-image: url('{{ asset('img/food.png') }}');"><span data-value="Comida">Comida</span></li>
+                        <li style="background-image: url('{{ asset('img/computers.png') }}');"><span data-value="Computación">Computación</span></li>
                     </ul>
                 </div>
                 <button class="btn-login vertical-form-input try">Finalizar registro</button>
