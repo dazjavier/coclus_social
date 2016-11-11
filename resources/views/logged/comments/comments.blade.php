@@ -5,7 +5,9 @@
     </a>
     </div>
     <div class="media-body">
-        <h4 class="media-heading title-comment">{{ $status->user->getFullName() }}</h4>
+        <h4 class="media-heading title-comment">
+            {{ $status->user->getFullName() }}
+        </h4>
         <p class="body-comment">
             {{ $status->body }}
         </p>
@@ -21,6 +23,14 @@
                     @endif
                 @endif
                 <li><a href="#" class="comment-link {{ $errors->has("reply-{$status->id}") ? 'active' : '' }}">Comentar</a></li>
+                @if ($status->user->id == Auth::user()->id)
+                    <form action="{{ route('status.delete', ['statusId' => $status->id]) }}" method="post" class="pull-right delete-comment-form">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-danger btn-xs delete-comment-button">
+                            Eliminar estado
+                        </button>
+                    </form>
+                @endif
                 <div class="comment-textbox {{ $errors->has("reply-{$status->id}") ? '' : 'reply-status' }}" id="comment_status_{{ $status->id }}">
                     <form action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
                         {{ csrf_field() }}
@@ -61,6 +71,14 @@
                                             <li><a href="{{ route('status.unlike', ['statusId' => $reply->id]) }}">Ya no me gusta</a></li>
                                         @endif
                                     @endif
+                                @endif
+                                @if ($reply->user->id == Auth::user()->id)
+                                    <form action="{{ route('status.delete', ['statusId' => $reply->id]) }}" method="post" class="pull-right delete-comment-form">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger btn-xs delete-comment-button">
+                                            Eliminar comentario
+                                        </button>
+                                    </form>
                                 @endif
                             </ul>
                         </div>

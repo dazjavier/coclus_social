@@ -2,15 +2,18 @@
 
 namespace Coclus\Http\Controllers;
 
+use Auth;
+use Coclus\Http\Requests;
 use Coclus\Like;
+use Coclus\Status;
 use Coclus\User;
 use Illuminate\Http\Request;
-use Auth;
-use Coclus\Status;
-use Coclus\Http\Requests;
 
 class StatusController extends Controller
 {
+    /*
+     * Create a new User status
+     */
     public function postStatus(Request $request) {
         $this->validate($request, [
             'status' => 'required|max:1000',
@@ -24,6 +27,20 @@ class StatusController extends Controller
         return redirect('/timeline');
     }
 
+    /*
+     * Delete a User status
+     */
+    public function deleteStatus($statusId) {
+        $status = Auth::user()->statuses->find($statusId);
+        if (! $status) { return back(); }
+        if ($status->user->id !== Auth::user()->id) { return back(); }
+        Auth::user()->statuses->find($status->id)->delete();
+        return back();
+    }
+
+    /*
+     * Create a new Reply for an Status
+     */
     public function postReply(Request $request, $statusId) {
         $this->validate($request, [
             "reply-{$statusId}" => 'required|max:1000',
@@ -43,7 +60,6 @@ class StatusController extends Controller
             return redirect('/timeline');
         }
 
-        $url = "#comment_" . $statusId;
         $reply = Status::create([
             'body' => $request->input("reply-{$statusId}"),
         ])->user()->associate(Auth::user());
@@ -53,6 +69,9 @@ class StatusController extends Controller
         return back();
     }
 
+    /*
+     * Create a Like for an User Status
+     */
     public function getLike($statusId){
         $status = Status::find($statusId);
 
@@ -64,11 +83,20 @@ class StatusController extends Controller
 
         Auth::user()->likes()->save($like);
 
-        return redirect()->back();
+        return back();
     }
 
+    /*
+     * Delete a Like for an User Status
+     */
     public function getUnlike($statusId) {
-        $status = Like::where('likeable_id', $statusId)->delete();
+        $status = Status::find($statusId);
+
+        if (! $status) { return back(); }
+        if (! Auth::user()->isFriendWith($status->user)) { return back(); }
+        if (! Auth::user()->hasLikedStatus($status)) {  return back(); }
+
+        $status->likes()->delete($statusId);
         return back();
     }
 }

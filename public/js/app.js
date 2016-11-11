@@ -41,9 +41,24 @@ $(document).ready(function () {
       $(this).toggleClass('active');
       var thebox = $(this).parent().parent().find('.comment-textbox').attr('id');
       $('#' + thebox).toggleClass('reply-status');
-      //console.log($('.comment-textbox').attr('id'));
-      //$('.comment-textbox', '.info-comment').first().toggleClass('reply-status');
   });
+
+    $('.delete-comment-button').click(function(e) {
+        e.preventDefault();
+        swal({
+            title: "¿Estás seguro?",
+            text: "No podrás restablecer el estado nuevamente",
+            type: "error",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: true
+        },
+        function(){
+            $(this).parent().submit();
+        }.bind(this));
+    });
 
     $('.list-interest li span').click(function(){
         $(this).toggleClass('list-interest-selected');

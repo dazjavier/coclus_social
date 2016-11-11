@@ -11,18 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', function () { return view('welcome'); });
 Route::auth();
-
-Route::get('/yay', function(){
-    return view('profiles.information');
-});
-
 Route::post('/register', 'Auth\AuthController@postRegisterForm');
-
 Route::get('/users/{username}', 'ProfileController@showUser');
 Route::get('/users/{username}/statuses', 'ProfileController@showUserStatuses');
 
@@ -53,10 +44,11 @@ Route::group(['middleware'=>'auth'], function (){
         Route::post('/friends/delete/{username}', 'FriendController@postDelete')->name('friends.delete');
 
         # Statuses routes
+        Route::post('/status', 'StatusController@postStatus')->name('status.post');
+        Route::post('/status/{statusId}/delete', 'StatusController@deleteStatus')->name('status.delete');
+        Route::post('/status/{statusId}/reply', 'StatusController@postReply')->name('status.reply');
         Route::get('/status/{statusId}/like', 'StatusController@getLike')->name('status.like');
         Route::get('/status/{statusId}/unlike', 'StatusController@getUnlike')->name('status.unlike');
-        Route::post('/status', 'StatusController@postStatus')->name('status.post');
-        Route::post('/status/{statusId}/reply', 'StatusController@postReply')->name('status.reply');
 
         # Professional Rate
         Route::get('/rate/{professional_id}/{vote}', 'RateController@rate')->name('professional.rate');
