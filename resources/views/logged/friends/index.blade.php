@@ -21,9 +21,7 @@
                                         @foreach($friends as $user)
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="ficha">
-                                                    <div class="img-container-ficha">
-                                                        <img src="{{ asset($user->getAvatarUrl()) }}" class="img-responsive img-ficha" alt="{{ $user->getFullName() }}">
-                                                    </div>
+                                                    <div class="img-container-ficha" style="background-image: url({{ asset($user->getAvatarUrl()) }})"></div>
                                                     <div class="datos">
                                                         <a href="{{ url($user->getUsernameUrl()) }}" class="ficha-name">{{ $user->getFullName() }}</a>
                                                         <p class="ficha-username">{{ $user->getUsername() }}</p>

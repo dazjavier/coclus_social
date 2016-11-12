@@ -21,10 +21,12 @@ class ProfileController extends Controller
         $userId     = Auth::user()->id;
         $deaf       = Deaf::where('user_id', $userId)->get();
         $familiar   = Familiar::where('user_id', $userId)->first();
+        $professional = Professional::where('user_id', $userId)->first();
 
         return view('logged.profiles.information')
-        ->with('deaf', $deaf)
-        ->with('familiar', $familiar);
+            ->with('deaf', $deaf)
+            ->with('familiar', $familiar)
+            ->with('professional', $professional);
     }
 
     public function showLoggedUserStatuses() {

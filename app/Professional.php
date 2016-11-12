@@ -16,7 +16,7 @@ class Professional extends Model
     }
 
     public function speciallity() {
-        return $this->hasOne('Coclus\Speciallity', 'id');
+        return $this->hasOne('Coclus\Speciallity', 'id', 'speciallity_id');
     }
 
     public function getSpeciallity(){

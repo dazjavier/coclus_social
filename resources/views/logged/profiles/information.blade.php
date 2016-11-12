@@ -26,6 +26,19 @@
                         </div>
                         <br>
                     @endif
+                    @if (Auth::user()->profile_type == "professional" && isset($professional))
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h4>Especialidad</h4>
+                                <p>{{ $professional->getSpeciallity()->name }}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4>Categoría</h4>
+                                <p>{{ $professional->category }}</p>
+                            </div>
+                        </div>
+                        <br>
+                    @endif
                     @if (Auth::user()->profile_type !== "professional")
                         <h4>
                             {{ Auth::user()->profile_type == "familiar" ? 'Sus formas de Comunicación' : 'Formas de comunicación' }}
