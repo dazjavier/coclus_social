@@ -142,7 +142,7 @@ class AssignController extends Controller
     }
 
     public function getProfessionalSpeciallities() {
-        return $speciallities = Speciallity::all();
+        return Speciallity::all();
     }
 
     public function postAssignProfile($message) {

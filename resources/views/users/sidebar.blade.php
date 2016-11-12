@@ -1,8 +1,6 @@
 <div class="col-lg-3 col-md-3 col-sm-4 sidebar">
     <div class="sidebar-user-info">
-        <div class="img-container">
-            <img src="{{ asset($user->getAvatarUrl()) }}" alt="{{ $user->getFullName() }}">
-        </div>
+        <div class="img-container" style="background-image: url({{ asset($user->getAvatarUrl()) }})"></div>
         <h4>{{ $user->getFullName() }}</h4>
         <h5>{{ $user->getUsername() }}</h5>
     </div>

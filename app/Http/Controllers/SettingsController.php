@@ -110,7 +110,9 @@ class SettingsController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(345, 345)->save(public_path('/uploads/avatars/'. $filename));
+            Image::make($avatar)->resize(null, 345, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('/uploads/avatars/'. $filename));
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
