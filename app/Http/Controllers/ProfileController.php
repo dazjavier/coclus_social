@@ -17,6 +17,11 @@ use DB;
 
 class ProfileController extends Controller
 {
+    /*
+     * Show Logged User Profile
+     *
+     * @return View
+     */
     public function index() {
         $userId     = Auth::user()->id;
         $deaf       = Deaf::where('user_id', $userId)->get();
@@ -29,12 +34,22 @@ class ProfileController extends Controller
             ->with('professional', $professional);
     }
 
+    /*
+     * Show Logged User Statuses
+     *
+     * @return View
+     */
     public function showLoggedUserStatuses() {
         $statuses = Auth::user()->statuses()->notReply()->limit(5)->get();
 
         return view('logged.profiles.statuses')->with('statuses', $statuses);
     }
 
+    /*
+     * Show User Profile
+     *
+     * @return View
+     */
     public function showUser($username) {
         $user = User::where('username', $username)->first();
         if (Auth::check()) {
@@ -61,6 +76,11 @@ class ProfileController extends Controller
         ->with('user_type', $user_type);
     }
 
+    /*
+     * Show User Statuses
+     *
+     * @return View
+     */
     public function showUserStatuses($username) {
         $user = User::where('username', $username)->first();
         $statuses = $user->statuses()->notReply()->limit(5)->get();
@@ -76,14 +96,29 @@ class ProfileController extends Controller
         ->with('statuses', $statuses);
     }
 
+    /*
+     * Get a User by username
+     *
+     * @return Coclus\User
+     */
     public function getUserByUsername($username) {
         return $user = User::where('username', $username)->first();
     }
 
+    /*
+     * Get User Interests by Id
+     *
+     * @return Collection
+     */
     public function getInterestsByUserId($userId) {
         return $interest = DB::table('interest')->where('user_id', $userId)->get();
     }
 
+    /*
+     * Get User Profile type by Id
+     *
+     * @return Collection
+     */
     public function getProfileTypeByUserId($profile_type, $userId) {
         return $type = DB::table($profile_type)->where('user_id', $userId)->get();
     }
